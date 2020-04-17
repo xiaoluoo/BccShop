@@ -1,0 +1,60 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+ 	<!-- 登录验证 -->
+    <mapper namespace="com.bccshop.dao.UserDao">
+    <select id="login" parameterType="String" resultMap="loginMap">
+    		select * from t_user  where  u_name = #{userName} 
+    		and u_psd =#{password} and u_iden = #{identity}
+    </select>
+      	
+      <!-- 通过名称查找 -->
+      <select id="findName" parameterType="String" resultMap="loginMap">
+      			select * from t_user  where u_name = #{userName} 
+      </select>
+      
+     <!--  注册 -->
+     <insert id="register"  parameterType="User">
+     			insert into t_user(
+     			u_name,
+     			u_psd,
+     			u_iden,
+     			u_sex,
+     			u_rname,
+     			u_idcard,
+     			u_mobile
+     			) 
+     			values
+     			(	 #{userName},
+     				#{password},
+     				#{identity},
+     				#{sex},
+     				#{realName},
+     				#{idCard},
+     				#{mobile}
+     			)
+     </insert>
+     
+        <resultMap type="User" id="userMap">
+        	<id column="u_id" property="id"/>
+        	<result column="u_name" property="userName"/>
+        	<result column="u_psd" property="password"/>
+        	<result column="u_iden" property="identity"/>
+        	<result column="u_sex" property="sex"/>
+        	<result column="u_rname" property="realName"/>
+        	<result column="u_idcard" property="idCard"/>
+        	<result column="u_mobile" property="mobile"/>
+        	<collection property="address" ofType="Address">
+				<result column="u_aid" property="a_id"/>
+				<result column="u_address" property="a_name"/>
+			</collection>
+        </resultMap>
+        
+        <resultMap type="User" id="loginMap">
+        		<id column="u_id" property="id"/>
+        	<result column="u_name" property="userName"/>
+        	<result column="u_psd" property="password"/>
+        	<result column="u_iden" property="identity"/>
+        </resultMap> 
+    </mapper>

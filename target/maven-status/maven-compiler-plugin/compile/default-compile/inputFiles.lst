@@ -1,0 +1,14 @@
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\dao\GoodsDao.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\po\Goods.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\controller\GoodsController.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\controller\LoginController.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\po\User.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\po\GoodsCategory.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\service\impl\UserServiceImpl.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\service\UserService.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\service\impl\GoodsServiceImpl.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\controller\LoginInterceptor.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\po\Address.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\dao\UserDao.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\po\AjaxResult.java
+E:\IdeaProjects\BccShop\src\main\java\com\bccshop\service\GoodsService.java

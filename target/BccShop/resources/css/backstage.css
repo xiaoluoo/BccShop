@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+body {
+	background-color: #E3E3E3;
+}
+
+#head {
+	/* border: 1px red solid; */
+}
+
+#bbody {}
+
+#body1 {
+	margin-top: 0px;
+	/* border: 1px red solid; */
+	padding-top: 20px;
+}
+
+#body2 {
+	padding-left: 0px;
+	height: 600px;
+}
+
+#foot {
+	margin-top: 0px;
+}
+
+#list {}

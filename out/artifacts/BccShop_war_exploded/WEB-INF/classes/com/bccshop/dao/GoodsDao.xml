@@ -1,0 +1,109 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.bccshop.dao.GoodsDao">
+    <!-- 通过类别查询 -->
+    <select id="findByName" parameterType="String" resultMap="goodsMap">
+    		select	 *
+    		from t_goods a 
+    		join t_category b
+    		on b.g_id =a.g_id
+    		where g_name like "%"#{name}"%"
+    </select>
+    
+    <select id="findId" resultMap="goodsMapp">
+    
+    	select  * from t_goods
+    	where g_name=#{goodsName}
+    	and 
+   		 g_oPrice=#{originalPrice}
+    </select>
+    
+     <select id="selectById" parameterType="int" resultMap="goodsMap">
+    select	 *
+    		from t_goods a 
+    		join t_category b
+    		on b.g_id =a.g_id
+    		where a.g_id= #{goodsId}
+    </select>
+    
+   <!--  删除类别 -->
+   <delete id="deleteGoodsCategory" parameterType="int">
+   			delete from t_category where g_id=#{goodsId}
+   </delete>
+    <!-- 删除商品 -->
+      <delete id="deleteGoods" parameterType="int">
+   			delete from t_goods where g_id=#{goodsId}
+   </delete>
+    <!-- 显示 -->
+    <select id="list" resultMap="goodsMap">
+   			 select	 *
+    		from t_goods a 
+    		join t_category b
+    		on b.g_id =a.g_id
+    </select>
+    <!-- 插入 -->
+    <update id="update" parameterType="Goods">
+   update t_goods set 
+   g_name=#{goodsName},
+    g_photo=#{goodsPhoto},
+   g_oPrice=#{originalPrice},
+   g_price=#{goodsPrice},
+   g_describe=#{goodsDescribe}
+   where g_id = #{goodsId}
+    </update>
+    
+    <update id="updateCategory" parameterType="GoodsCategory">
+   update t_category set 
+   g_id=#{goodsId},
+    c_name=#{categoryName}
+   where g_id=#{goodsId} and  c_name=#{categoryName}
+    </update>
+    
+    <insert id="insert" parameterType="Goods">
+    			insert into t_goods(
+    			g_name,
+    			g_photo,
+    			g_oPrice,
+    			g_price,
+    			g_describe)
+				values(
+				#{goodsName},
+				#{goodsPhoto},
+				#{originalPrice},
+				#{goodsPrice},
+				#{goodsDescribe})
+    </insert>
+    
+       <insert id="insertCategory" parameterType="GoodsCategory">
+    			insert into t_category values(null,#{categoryId},#{categoryName});
+    </insert>
+    
+     <resultMap type="Goods" id="goodsMap">
+        	<id column="g_id" property="goodsId"/>
+        	<result column="g_name" property="goodsName"/>
+        	<result column="g_photo" property="goodsPhoto"/>
+        	<result column="g_oPrice" property="originalPrice"/>
+        	<result column="g_price" property="goodsPrice"/>
+        	<result column="g_describe" property="goodsDescribe"/>
+        	<collection property="goodsCategory" ofType="GoodsCategory">
+				<id column="c_id" property="categoryId"/>
+				<result column="c_name" property="categoryName"/>
+			</collection>
+			</resultMap>
+			
+			 <resultMap type="Goods" id="goodsMapp">
+        	<id column="g_id" property="goodsId"/>
+        	<result column="g_name" property="goodsName"/>
+        	<result column="g_photo" property="goodsPhoto"/>
+        	<result column="g_oPrice" property="originalPrice"/>
+        	<result column="g_price" property="goodsPrice"/>
+        	<result column="g_describe" property="goodsDescribe"/>
+			</resultMap>
+			
+			 <resultMap type="GoodsCategory" id="categoryMap">
+			 	<id column="c_id" property="categoryId"/>
+			 	<result column="g_id" property="goodsId"/>
+				<result column="c_name" property="categoryName"/>
+			</resultMap>
+    </mapper>
