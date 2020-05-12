@@ -58,7 +58,10 @@ function registerTips() {
 		} else if ($("#userName").val().length < 3 || $("#userName").val().length > 16) {
 			$("#inputname").addClass("has-error");
 			$("#msg_name").html("用户名长度为3-16位字符串");
-		} else {
+		} else if(!findName($("#userName").val())){
+			$("#inputname").addClass("has-error");
+			$("#msg_name").html("用户名已存在");
+		}else {
 			$("#msg_name").html("");
 			$("#inputname").removeClass("has-error");
 			$("#inputname").addClass("has-success");
@@ -235,7 +238,29 @@ if (checkLogin()) {
 		}
 	});
 	}
-	clearLoginUser();
+}
+//同步请求查找用户名是否存在
+function findName(username){
+	var check =false;
+	$.ajax({
+		type: "post",
+		url:"user/findName",
+		async: false,
+		data:{userName:username},
+		success:function (ajaxResult) {
+			if(ajaxResult.success == 'OK'){
+					//alert(ajaxResult.message);
+				check = false;
+				}else if (ajaxResult.success == 'NO'){
+			//alert(ajaxResult.message);
+				check = true;
+		}else{
+				alert('发生错误，请重试！');
+				check = false;
+			}
+		}
+	});
+	return check;
 }
 // 清除提示栏数据
 function clearLmsg() {
@@ -275,6 +300,10 @@ function checkUser() {
 		} else if ($("#userName").val().length < 3 || $("#userName").val().length > 16) {
 			$("#inputname").addClass("has-error");
 			$("#msg_name").html("用户名长度为3-16位字符串");
+			return  false;
+		} else if(!findName($("#userName").val())){
+			$("#inputname").addClass("has-error");
+			$("#msg_name").html("用户名已存在");
 			return  false;
 		} else {
 			$("#msg_name").html("");

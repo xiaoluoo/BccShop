@@ -32,20 +32,36 @@ public class LoginController {
         return "redirect:login";
     }
 
+    //查找用户名是否重复
+    @RequestMapping(value = "/user/findName")
+    @ResponseBody
+    public AjaxResult findName(String userName){
+        System.out.println(userName);
+
+        User u = userService.findName(userName);
+
+        AjaxResult ajaxResult = new AjaxResult();
+        if (u !=null){
+            ajaxResult.setSuccess("OK");
+        }else{
+            ajaxResult.setSuccess("NO");
+        }
+        System.out.println(ajaxResult);
+        return ajaxResult;
+    };
 
     @RequestMapping(value = "/user/login")
     @ResponseBody
     public AjaxResult LoginUser(User user,
                           HttpSession session) {
-        System.out.println(user);
-
+        /*System.out.println(user);
         String userName = user.getUserName();
         String password = user.getPassword();
-        String identity = user.getIdentity();
+        String identity = user.getIdentity();*/
 
         AjaxResult ajaxResult = new AjaxResult();
 
-        User u = userService.Login(userName, password, identity);
+        User u = userService.Login(user.getUserName(),user.getPassword(),user.getIdentity());
 
         //验证
         if (u != null) {
@@ -67,6 +83,7 @@ public class LoginController {
     public String register(User user, HttpSession session) {
         //System.out.println(user);
         //验证
+        //AjaxResult ajaxResult = new AjaxResult();
         String userName = user.getUserName();
         User u = userService.findName(userName);
         if (u == null) {

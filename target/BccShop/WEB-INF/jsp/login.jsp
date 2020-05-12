@@ -5,10 +5,12 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<link href="resources/css/bootstrap.css" rel="stylesheet" />
+		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css" href="resources/css/login.css" />
-		<script src="resources/js/jquery-1.12.4.js"></script>
-		<script src="resources/js/bootstrap.js"></script>
 		<script src="resources/js/login.js"></script>
 		<title>并夕夕登录</title>
 	</head>
