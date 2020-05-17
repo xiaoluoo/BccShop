@@ -59,6 +59,7 @@ insert into t_category values(null,"限时抢购");
 
 create table t_address(
 u_aid integer auto_increment primary key,
+u_id integer,
 u_address varchar(30)
 );
 
